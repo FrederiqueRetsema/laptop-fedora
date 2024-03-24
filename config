@@ -1,0 +1,10 @@
+[sso-session SSOSessionMain]
+sso_start_url = https://d-936778c00f.awsapps.com/start
+sso_region = eu-west-1
+sso_registration_scopes = sso:account:access
+
+[profile fra-dev]
+sso_session = SSOSessionMain
+sso_account_id = 040909972200
+sso_role_name = AWSAdministratorAccess
+region = eu-west-1
