@@ -54,6 +54,7 @@ echo "-> snap install notepad-plus-plus"
 snap install notepad-plus-plus
 echo "-> snap install code --classic"
 snap install code --classic
+snap install teams-for-linux
 
 echo "-> systemctl enable --now libvirtd"
 systemctl enable --now libvirtd
@@ -69,22 +70,14 @@ yum update -y
 echo "-> systemctl set-default graphical.target"
 systemctl set-default graphical.target
 
-SECOND_PART=/home/frederique/install-laptop-part-2.sh
+SECOND_PART=/home/frederique/install-laptop-part2.sh
 echo ""
 echo "==="
 echo "Switching to graphical mode. Read ${SECOND_PART} for second part + manual post-install actions"
 echo "Press enter"
 echo "==="
-echo "cd /clone" >> $SECOND_PART
-echo "gh auth login" >> $SECOND_PART
-echo "git clone https://github.com/FrederiqueRetsema/Xforce-unpublished.git" >> $SECOND_PART
-echo "git clone https://github.com/FrederiqueRetsema/aws-bitwarden-pvt.git" >> $SECOND_PART
-echo "echo 'Manual steps:'" >> $SECOND_PART
-echo "echo '- WiFi settings > Gear icon > IPv4 > DNS 8.8.8.8 8.8.4.4 1.1.1.1'" >> $SECOND_PART
-echo "echo '- Tweaks > Mouse and Touchpad > Area'" >> $SECOND_PART
-echo "echo '- Install bitwarden'" >> $SECOND_PART
-echo "echo '- Install ublock origin'" >> $SECOND_PART
-echo "echo '- Check chromecast'" >> $SECOND_PART
+curl https://raw.githubusercontent.com/FrederiqueRetsema/laptop-fedora/main/install-laptop-part2.sh > $SECOND_PART
+
 read a
 echo "-> systemctl isolate graphical.target"
 systemctl isolate graphical.target
