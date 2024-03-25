@@ -39,8 +39,8 @@ yum update -y
 
 echo "-> dnf groupinstall \"GNOME\" -y"
 dnf groupinstall "GNOME" -y
-echo "-> dnf install dbus-x11 terminator libreoffice libreoffice-langpack-nl snapd timeshift gnome-tweaks git gh awscli2 fedora-workstation-repositories -y"
-dnf install dbus-x11 terminator libreoffice libreoffice-langpack-nl snapd timeshift gnome-tweaks git gh awscli2 fedora-workstation-repositories -y
+echo "-> dnf install dbus-x11 terminator libreoffice libreoffice-langpack-nl snapd timeshift gnome-tweaks git gh awscli2 fedora-workstation-repositories cups -y"
+dnf install dbus-x11 terminator libreoffice libreoffice-langpack-nl snapd timeshift gnome-tweaks git gh awscli2 fedora-workstation-repositories cups -y
 echo "-> dnf group install --with-optional virtualization -y"
 dnf group install --with-optional virtualization -y
 echo "-> dnf config-manager --set-enabled google-chrome"
@@ -55,6 +55,9 @@ snap install notepad-plus-plus
 echo "-> snap install code --classic"
 snap install code --classic
 snap install teams-for-linux
+
+echo "-> systemctl enable --now cups"
+systemctl enable --now cups
 
 echo "-> systemctl enable --now libvirtd"
 systemctl enable --now libvirtd

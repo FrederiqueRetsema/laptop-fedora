@@ -12,6 +12,13 @@ curl -O https://raw.githubusercontent.com/FrederiqueRetsema/laptop-fedora/main/c
 aws sso login --profile fra-dev
 aws cp s3://frpublic2/persoonlijk/config ~/.aws/config
 
+echo "-> Download scanner software"
+cd /ops
+aws cp s3://frpublic2/persoonlijk/epson/iscan-perfection-v370-bundle-2.30.4.x64.rpm.tar.gz . --profile fra-frlink
+tar -xaf ./iscan-v370-perfection-v370-bundle-2.30.4.x64.rpm.tar.gz
+cd iscan-perfection-v370-bundle-2.30.4.x64.rpm
+./install.sh
+
 echo "-> Download wallpapers to /usr/wallpapers"
 mkdir -p /usr/wallpapers
 chmod a+rw /usr/wallpapers
