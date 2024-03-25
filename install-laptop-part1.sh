@@ -39,8 +39,8 @@ yum update -y
 
 echo "-> dnf groupinstall \"GNOME\" -y"
 dnf groupinstall "GNOME" -y
-echo "-> dnf install dbus-x11 terminator libreoffice libreoffice-langpack-nl snapd timeshift gnome-tweaks git gh awscli2 fedora-workstation-repositories cups -y"
-dnf install dbus-x11 terminator libreoffice libreoffice-langpack-nl snapd timeshift gnome-tweaks git gh awscli2 fedora-workstation-repositories cups -y
+echo "-> dnf install dbus-x11 terminator libreoffice libreoffice-langpack-nl snapd timeshift gnome-tweaks git gh awscli2 fedora-workstation-repositories cups quentier -y"
+dnf install dbus-x11 terminator libreoffice libreoffice-langpack-nl snapd timeshift gnome-tweaks git gh awscli2 fedora-workstation-repositories cups quentier -y
 echo "-> dnf group install --with-optional virtualization -y"
 dnf group install --with-optional virtualization -y
 echo "-> dnf config-manager --set-enabled google-chrome"
