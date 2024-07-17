@@ -14,7 +14,7 @@ aws s3 cp s3://frpublic2/persoonlijk/config ~/.aws/config --profile fra-dev
 
 echo "-> Download scanner software"
 cd /opt
-aws cp s3://frpublic2/persoonlijk/epson/iscan-perfection-v370-bundle-2.30.4.x64.rpm.tar.gz . --profile fra-frlink
+aws s3 cp s3://frpublic2/persoonlijk/epson/iscan-perfection-v370-bundle-2.30.4.x64.rpm.tar.gz . --profile fra-frlink
 tar -xaf ./iscan-v370-perfection-v370-bundle-2.30.4.x64.rpm.tar.gz
 cd iscan-perfection-v370-bundle-2.30.4.x64.rpm
 ./install.sh
