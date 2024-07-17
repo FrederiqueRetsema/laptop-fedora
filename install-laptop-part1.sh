@@ -50,6 +50,8 @@ dnf install google-chrome-stable -y
 
 echo "-> ln -s /var/lib/snapd/snap /snap"
 ln -s /var/lib/snapd/snap /snap
+echo "-> sleep 20"
+sleep 20
 echo "-> snap install notepad-plus-plus"
 snap install notepad-plus-plus
 echo "-> snap install code --classic"
