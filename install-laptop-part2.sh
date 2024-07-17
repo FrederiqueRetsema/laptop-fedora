@@ -10,7 +10,7 @@ mkdir ~/.aws
 cd ~/.aws
 curl -O https://raw.githubusercontent.com/FrederiqueRetsema/laptop-fedora/main/config
 aws sso login --profile fra-dev
-aws cp s3://frpublic2/persoonlijk/config ~/.aws/config
+aws s3 cp s3://frpublic2/persoonlijk/config ~/.aws/config
 
 echo "-> Download scanner software"
 cd /opt
