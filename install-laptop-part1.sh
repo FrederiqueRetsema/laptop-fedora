@@ -69,6 +69,10 @@ dnf install code -y
 # snap install code --classic
 # snap install teams-for-linux
 
+echo "-> /etc/hosts"
+echo "192.168.68.70 nas" >> /etc/hosts
+echo "192.168.68.66 gebruiker-pc" >> /etc/hosts
+
 echo "-> systemctl enable --now cups"
 systemctl enable --now cups
 
