@@ -48,9 +48,10 @@ dnf config-manager --set-enabled google-chrome
 echo "-> dnf install google-chrome-stable -y"
 dnf install google-chrome-stable -y
 
+# MS-Teams via chrome
 VSCODE_REPO_FILE=/etc/yum.repos.d/microsoft-teams.repo
 echo "[VScode]" > $VSCODE_REPO_FILE
-echo "name=teams" >> $VSCODE_REPO_FILE
+echo "name=vscode" >> $VSCODE_REPO_FILE
 echo "baseurl=https://packages.microsoft.com/yumrepos/vscode" >> $VSCODE_REPO_FILE
 echo "enabled=1" >> $VSCODE_REPO_FILE
 echo "gpgcheck=1" >> $VSCODE_REPO_FILE
@@ -58,15 +59,15 @@ echo "gpgkey=https://packages.microsoft.com/keys/microsoft.asc" >> $VSCODE_REPO_
 dnf check-update
 dnf install code -y
 
-echo "-> ln -s /var/lib/snapd/snap /snap"
-ln -s /var/lib/snapd/snap /snap
-echo "-> sleep 20"
-sleep 20
-echo "-> snap install notepad-plus-plus"
-snap install notepad-plus-plus
-echo "-> snap install code --classic"
-snap install code --classic
-snap install teams-for-linux
+# echo "-> ln -s /var/lib/snapd/snap /snap"
+# ln -s /var/lib/snapd/snap /snap
+# echo "-> sleep 20"
+# sleep 20
+# echo "-> snap install notepad-plus-plus"
+# snap install notepad-plus-plus
+# echo "-> snap install code --classic"
+# snap install code --classic
+# snap install teams-for-linux
 
 echo "-> systemctl enable --now cups"
 systemctl enable --now cups
