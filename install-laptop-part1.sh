@@ -48,6 +48,16 @@ dnf config-manager --set-enabled google-chrome
 echo "-> dnf install google-chrome-stable -y"
 dnf install google-chrome-stable -y
 
+TEAMS_REPO_FILE=/etc/yum.repos.d/microsoft-teams.repo
+echo "[Teams]" > $TEAMS_REPO_FILE
+echo "name=teams" >> $TEAMS_REPO_FILE
+echo "baseurl=https://packages.microsoft.com/yumrepos/ms-teams" >> $TEAMS_REPO_FILE
+echo "enabled=1" >> $TEAMS_REPO_FILE
+echo "gpgcheck=1" >> $TEAMS_REPO_FILE
+echo "gpgkey=https://packages.microsoft.com/keys/microsoft.asc" >> $TEAMS_REPO_FILE
+dnf update
+dnf install teams -y
+
 echo "-> ln -s /var/lib/snapd/snap /snap"
 ln -s /var/lib/snapd/snap /snap
 echo "-> sleep 20"
