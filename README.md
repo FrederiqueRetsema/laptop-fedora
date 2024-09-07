@@ -11,4 +11,4 @@ Install repo for fedora laptop
 4) Follow the instructions
 
 # Reminders
-- Evernote = Quentier
+- Evernote = Quentier / Notion (web app)
