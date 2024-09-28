@@ -26,10 +26,13 @@ function firewall_settings_chromecast() {
 	firewall-cmd --reload
 }
 
-echo "-> lvextend -l +100%FREE /dev/fedora*/root"
-lvextend -l +100%FREE /dev/fedora*/root
-echo "-> xfs_growfs /dev/fedora*/root"
-xfs_growfs /dev/fedora*/root
+if test -e /dev/fedora*
+then
+  echo "-> lvextend -l +100%FREE /dev/fedora*/root"
+  lvextend -l +100%FREE /dev/fedora*/root
+  echo "-> xfs_growfs /dev/fedora*/root"
+  xfs_growfs /dev/fedora*/root
+fi
 
 echo "fastmirror=1" | tee -a /etc/dnf/dnf.conf
 echo "max_parallel_downloads=10" | tee -a /etc/dnf/dnf.conf
