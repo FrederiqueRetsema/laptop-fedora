@@ -90,10 +90,14 @@ yum update -y
 echo "-> systemctl set-default graphical.target"
 systemctl set-default graphical.target
 
+echo "-> Permissions for part 2"
+chown frederique:frederique /opt
+
 SECOND_PART=/home/frederique/install-laptop-part2.sh
 echo ""
 echo "==="
 echo "Switching to graphical mode. Read ${SECOND_PART} for second part + manual post-install actions"
+echo "(as normal user)"
 echo "Press enter"
 echo "==="
 curl https://raw.githubusercontent.com/FrederiqueRetsema/laptop-fedora/main/install-laptop-part2.sh > $SECOND_PART

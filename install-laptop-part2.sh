@@ -1,6 +1,6 @@
 echo "-> Git"
 cd /clone
-gh auth login
+gh auth login -p https -w
 git clone https://github.com/FrederiqueRetsema/Xforce-unpublished.git
 git clone https://github.com/FrederiqueRetsema/aws-bitwarden-pvt.git
 git clone https://github.com/FrederiqueRetsema/laptop-fedora.git
@@ -15,13 +15,13 @@ aws s3 cp s3://frpublic2/persoonlijk/config ~/.aws/config --profile fra-dev
 echo "-> Download scanner software"
 cd /opt
 aws s3 cp s3://frpublic2/persoonlijk/epson/iscan-perfection-v370-bundle-2.30.4.x64.rpm.tar.gz . --profile fra-frlink
-tar -xaf ./iscan-v370-perfection-v370-bundle-2.30.4.x64.rpm.tar.gz
+tar -xaf ./iscan-perfection-v370-bundle-2.30.4.x64.rpm.tar.gz
 cd iscan-perfection-v370-bundle-2.30.4.x64.rpm
 ./install.sh
 
 echo "-> Download wallpapers to /usr/wallpapers"
 mkdir -p /usr/wallpapers
-chmod a+rw /usr/wallpapers
+sudo chmod a+rw /usr/wallpapers
 aws s3 cp s3://frpublic2/persoonlijk/wallpapers.zip /usr/wallpapers/wallpapers.zip --profile fra-frlink
 cd /usr/wallpapers
 unzip wallpapers.zip
