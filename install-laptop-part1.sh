@@ -86,6 +86,9 @@ mkdir /clone
 echo "-> chmod a+rwx /clone"
 chmod a+rwx /clone
 
+echo "-> Slack"
+flatpak install flathub com.slack.Slack -y
+
 echo "firewall_settings_chromecast"
 firewall_settings_chromecast
 echo "-> yum update -y"
