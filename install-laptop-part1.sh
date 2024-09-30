@@ -51,8 +51,8 @@ dnf config-manager --set-enabled google-chrome
 echo "-> dnf install google-chrome-stable -y"
 dnf install google-chrome-stable -y
 
-# MS-Teams via chrome
-VSCODE_REPO_FILE=/etc/yum.repos.d/microsoft-teams.repo
+# VSCode via yum
+VSCODE_REPO_FILE=/etc/yum.repos.d/vscode.repo
 echo "[VScode]" > $VSCODE_REPO_FILE
 echo "name=vscode" >> $VSCODE_REPO_FILE
 echo "baseurl=https://packages.microsoft.com/yumrepos/vscode" >> $VSCODE_REPO_FILE
@@ -61,6 +61,8 @@ echo "gpgcheck=1" >> $VSCODE_REPO_FILE
 echo "gpgkey=https://packages.microsoft.com/keys/microsoft.asc" >> $VSCODE_REPO_FILE
 dnf check-update
 dnf install code -y
+
+# MS-Teams via yum not possible, packages directory is missing
 
 # echo "-> ln -s /var/lib/snapd/snap /snap"
 # ln -s /var/lib/snapd/snap /snap

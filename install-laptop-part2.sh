@@ -20,7 +20,7 @@ cd iscan-perfection-v370-bundle-2.30.4.x64.rpm
 ./install.sh
 
 echo "-> Download wallpapers to /usr/wallpapers"
-mkdir -p /usr/wallpapers
+sudo mkdir -p /usr/wallpapers
 sudo chmod a+rw /usr/wallpapers
 aws s3 cp s3://frpublic2/persoonlijk/wallpapers.zip /usr/wallpapers/wallpapers.zip --profile fra-frlink
 cd /usr/wallpapers
