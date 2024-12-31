@@ -91,8 +91,13 @@ chmod a+rwx /clone
 echo "-> Slack"
 flatpak install flathub com.slack.Slack -y
 
-echo "firewall_settings_chromecast"
+echo "-> firewall_settings_chromecast"
 firewall_settings_chromecast
+
+echo "-> Draw io"
+curl -s https://api.github.com/repos/jgraph/drawio-desktop/releases/latest | grep browser_download_url | grep '\.rpm' | cut -d '"' -f 4 | wget -i -
+sudo yum install ./drawio-x86_64-*.rpm -y
+
 echo "-> yum update -y"
 yum update -y
 echo "-> systemctl set-default graphical.target"
