@@ -91,6 +91,13 @@ chmod a+rwx /clone
 echo "-> Slack"
 flatpak install flathub com.slack.Slack -y
 
+echo "--> az cli"
+rpm --import https://packages.microsoft.com/keys/microsoft.asc
+dnf install -y https://packages.microsoft.com/config/rhel/9.0/packages-microsoft-prod.rpm
+dnf install -y azure-cli
+
+echo 'Manual steps:'
+
 echo "-> firewall_settings_chromecast"
 firewall_settings_chromecast
 
