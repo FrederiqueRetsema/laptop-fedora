@@ -1,6 +1,7 @@
 echo "-> Git"
 cd /clone
 gh auth login -p https -w
+git config --global credential.helper store
 git clone https://github.com/FrederiqueRetsema/Xforce-unpublished.git
 git clone https://github.com/FrederiqueRetsema/aws-bitwarden-pvt.git
 git clone https://github.com/FrederiqueRetsema/laptop-fedora.git
