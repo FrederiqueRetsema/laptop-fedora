@@ -96,6 +96,11 @@ rpm --import https://packages.microsoft.com/keys/microsoft.asc
 dnf install -y https://packages.microsoft.com/config/rhel/9.0/packages-microsoft-prod.rpm
 dnf install -y azure-cli
 
+echo "--> DrawIO"
+dnf install wget curl -y
+curl -s https://api.github.com/repos/jgraph/drawio-desktop/releases/latest | grep browser_download_url | grep '\.rpm' | cut -d '"' -f 4 | wget -i -
+dnf install ./drawio-x86_64-*.rpm -y
+
 echo 'Manual steps:'
 
 echo "-> firewall_settings_chromecast"
