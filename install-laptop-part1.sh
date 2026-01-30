@@ -78,6 +78,23 @@ echo "-> /etc/hosts"
 echo "192.168.68.70 nas" >> /etc/hosts
 echo "192.168.68.66 gebruiker-pc" >> /etc/hosts
 
+echo "-> NAS"
+mkdir /mnt/nas
+
+SCRIPTFILE="/root/backup.sh"
+echo '#!/bin/bash' > ${SCRIPTFILE}
+echo 'mount -t cifs -o credentials=/etc/smbcredentials/nas.cred,uid=1000,gid=1000,file_mode=0777,dir_mode=0777 //nas/Backup/eigen-linux-pc /mnt/nas' >> ${SCRIPTFILE}
+echo 'MONTH="$(date +%2m)"' >> ${SCRIPTFILE}
+echo 'BACKUP_DIR="/mnt/nas/${MONTH}/"' >> ${SCRIPTFILE}
+echo 'mkdir -p "${BACKUP_DIR}"' >> ${SCRIPTFILE}
+echo 'find . -type l -exec rm {} \;' >> ${SCRIPTFILE}
+echo 'find . -name node_modules -type d -exec rm {} \;' >> ${SCRIPTFILE}
+echo 'cp -v -r /clone "${BACKUP_DIR}/clone"' >> ${SCRIPTFILE}
+echo 'cp -v -r ~frederique/.kiro "${BACKUP_DIR}/.kiro"' >> ${SCRIPTFILE}
+echo 'cp -v -r ~frederique/Downloads "${BACKUP_DIR}/downloads"' >> ${SCRIPTFILE}
+
+chmod 700 ${SCRIPTFILE}
+
 echo "-> systemctl enable --now cups"
 systemctl enable --now cups
 
@@ -108,12 +125,14 @@ firewall_settings_chromecast
 
 echo "-> Draw io"
 curl -s https://api.github.com/repos/jgraph/drawio-desktop/releases/latest | grep browser_download_url | grep '\.rpm' | cut -d '"' -f 4 | wget -i -
-sudo yum install ./drawio-x86_64-*.rpm -y
+yum install ./drawio-x86_64-*.rpm -y
 
 echo "-> yum update -y"
 yum update -y
 echo "-> systemctl set-default graphical.target"
 systemctl set-default graphical.target
+
+
 
 echo "-> Permissions for part 2"
 chown frederique:frederique /opt
