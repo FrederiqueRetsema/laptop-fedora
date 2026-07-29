@@ -29,6 +29,7 @@ echo "192.168.68.70 nas" >> /etc/hosts
 
 echo "-> NAS"
 mkdir -p /mnt/nas
+chmod a+w /mnt/nas
 
 SCRIPTFILE="/root/backup.sh"
 echo '#!/bin/bash' > ${SCRIPTFILE}
