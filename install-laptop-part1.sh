@@ -95,6 +95,11 @@ echo 'cp -v -r ~frederique/Downloads "${BACKUP_DIR}/downloads"' >> ${SCRIPTFILE}
 
 chmod 700 ${SCRIPTFILE}
 
+SCRIPTFILE="/root/mount.sh"
+echo '#!/bin/bash' > ${SCRIPTFILE}
+echo 'mount -t cifs -o credentials=/etc/smbcredentials/nas.cred,uid=1000,gid=1000,file_mode=0777,dir_mode=0777 //nas/Backup/eigen-linux-pc /mnt/nas' >> ${SCRIPTFILE}
+chmod 700 ${SCRIPTFILE}
+
 echo "-> systemctl enable --now cups"
 systemctl enable --now cups
 
