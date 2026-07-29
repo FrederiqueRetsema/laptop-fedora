@@ -1,3 +1,4 @@
+
 if test -e /dev/fedora*
 then
   echo "-> lvextend -l +100%FREE /dev/fedora*/root"
@@ -80,6 +81,11 @@ firewall-cmd --reload
 echo "/mnt/data *(rw,sync)" > /etc/exports.d/data.exports
 systemctl enable nfs-server --now
 exportfs -r
+
+echo "-> Don't suspend automatically"
+mkdir -p /etc/systemd/sleep.conf.d/
+echo -e "[Sleep]\nAllowSuspend=no\nAllowHibernation=no\nAllowSuspendThenHibernate=no\nAllowHybridSleep=no" | sudo tee /etc/systemd/sleep.conf.d/override.conf
+systemctl daemon-reload
 
 echo "-> Permissions for part 2"
 chown frederique:frederique /opt
