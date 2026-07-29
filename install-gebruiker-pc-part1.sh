@@ -88,7 +88,9 @@ echo -e "[Sleep]\nAllowSuspend=no\nAllowHibernation=no\nAllowSuspendThenHibernat
 systemctl daemon-reload
 
 echo "-> Permissions for part 2"
+mkdir -p /clone
 chown frederique:frederique /opt
+chown frederique:frederique /clone
 
 SECOND_PART=install-gebruiker-pc-part2.sh
 cp "./${SECOND_PART}" "/home/frederique/${SECOND_PART}"
