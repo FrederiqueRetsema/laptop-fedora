@@ -33,12 +33,12 @@ chmod a+w /mnt/nas
 
 SCRIPTFILE="/root/backup.sh"
 echo '#!/bin/bash' > ${SCRIPTFILE}
-echo 'mount -t cifs -o credentials=/etc/smbcredentials/nas.cred,uid=1000,gid=1000,file_mode=0777,dir_mode=0777 //nas/Backup/eigen-linux-nas /mnt/nas' >> ${SCRIPTFILE}
+echo 'mount -t cifs -o credentials=/etc/smbcredentials/nas.cred,uid=1000,gid=1000,file_mode=0777,dir_mode=0777 //nas/Backup/gebruiker-pc-nas /mnt/nas' >> ${SCRIPTFILE}
 echo 'MONTH="$(date +%2m)"' >> ${SCRIPTFILE}
 echo 'BACKUP_DIR="/mnt/nas/${MONTH}/"' >> ${SCRIPTFILE}
 echo 'mkdir -p "${BACKUP_DIR}"' >> ${SCRIPTFILE}
 echo 'cp -v -r /clone "${BACKUP_DIR}/clone"' >> ${SCRIPTFILE}
-echo 'cp -v -r /mnt/disks "${BACKUP_DIR}/disks"' >> ${SCRIPTFILE}
+echo 'cp -v -r /mnt/nas "${BACKUP_DIR}/nas"' >> ${SCRIPTFILE}
 echo 'cp -v -r ~frederique/.kiro "${BACKUP_DIR}/.kiro"' >> ${SCRIPTFILE}
 echo 'cp -v -r ~frederique/Downloads "${BACKUP_DIR}/downloads"' >> ${SCRIPTFILE}
 
