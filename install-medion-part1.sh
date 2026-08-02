@@ -7,6 +7,9 @@ then
   xfs_growfs /dev/fedora*/root
 fi
 
+echo "medion-nas" > /etc/hostname
+hostname medion-nas
+
 echo "fastmirror=1" | tee -a /etc/dnf/dnf.conf
 echo "max_parallel_downloads=10" | tee -a /etc/dnf/dnf.conf
 
@@ -33,7 +36,7 @@ chmod a+w /mnt/nas
 
 SCRIPTFILE="/root/backup.sh"
 echo '#!/bin/bash' > ${SCRIPTFILE}
-echo 'mount -t cifs -o credentials=/etc/smbcredentials/nas.cred,uid=1000,gid=1000,file_mode=0777,dir_mode=0777 //nas/Backup/gebruiker-pc-nas /mnt/nas' >> ${SCRIPTFILE}
+echo 'mount -t cifs -o credentials=/etc/smbcredentials/nas.cred,uid=1000,gid=1000,file_mode=0777,dir_mode=0777 //nas/Backup/medion-nas /mnt/nas' >> ${SCRIPTFILE}
 echo 'MONTH="$(date +%2m)"' >> ${SCRIPTFILE}
 echo 'BACKUP_DIR="/mnt/nas/${MONTH}/"' >> ${SCRIPTFILE}
 echo 'mkdir -p "${BACKUP_DIR}"' >> ${SCRIPTFILE}
@@ -62,15 +65,15 @@ dnf update -y
 
 echo "Install disks (assuming that you created a backup!): press enter to install disks"
 read a
-# OS is on /dev/sdc
-wipefs --all /dev/sda
+# OS is on /dev/sda
 wipefs --all /dev/sdb
-pvcreate /dev/sda
 pvcreate /dev/sdb
-vgcreate disks /dev/sda /dev/sdb
-lvcreate --type raid1 disks --size 1.5t --name data
+vgcreate disks /dev/sdb
+lvcreate disks --size 900g --name data
 mkfs.ext4 /dev/disks/data
 echo "/dev/disks/data /mnt/data ext4 defaults 0 0" >> /etc/fstab
+mkdir -p /mnt/data
+chmod a+w /mnt/data
 mount -a
 
 echo "-> Install NFS"
@@ -93,6 +96,6 @@ mkdir -p /clone
 chown frederique:frederique /opt
 chown frederique:frederique /clone
 
-SECOND_PART=install-gebruiker-pc-part2.sh
+SECOND_PART=install-medion-part2.sh
 cp "./${SECOND_PART}" "/home/frederique/${SECOND_PART}"
 
