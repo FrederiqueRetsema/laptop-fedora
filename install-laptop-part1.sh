@@ -132,6 +132,12 @@ echo "-> Draw io"
 curl -s https://api.github.com/repos/jgraph/drawio-desktop/releases/latest | grep browser_download_url | grep '\.rpm' | cut -d '"' -f 4 | wget -i -
 yum install ./drawio-x86_64-*.rpm -y
 
+echo "-> Terraform"
+cd /tmp
+wget -O- https://rpm.releases.hashicorp.com/fedora/hashicorp.repo | sudo tee /etc/yum.repos.d/hashicorp.repo
+yum list available | grep hashicorp
+dnf -y install terraform
+
 echo "-> yum update -y"
 yum update -y
 echo "-> systemctl set-default graphical.target"
